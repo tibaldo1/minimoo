@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vaquinha;
 
 class VaquinhaController extends Controller
 {
@@ -13,7 +14,8 @@ class VaquinhaController extends Controller
      */
     public function index()
     {
-        //
+        echo csrf_token();
+        return Vaquinha::all();
     }
 
     /**
@@ -34,7 +36,8 @@ class VaquinhaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Vaquinha::create($request->all());
+        return "Vaquinha criada com sucesso!";
     }
 
     /**
@@ -66,9 +69,11 @@ class VaquinhaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Vaquinha $vaquinha)
     {
-        //
+        $vaquinha->fill($request->all());
+        $vaquinha->save();
+        return "saldo atualizado com sucesso";
     }
 
     /**
@@ -77,8 +82,9 @@ class VaquinhaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vaquinha $vaquinha)
     {
-        //
+        Vaquinha::destroy($vaquinha->id);
+        return "vaquinha deleted";
     }
 }

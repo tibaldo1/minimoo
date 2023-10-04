@@ -9,6 +9,8 @@ class Auxiliar extends Model
 {
     use HasFactory;
 
+    protected $fillable=["cpf", "id"];
+
     public function usuarios(){
         $this->belongsTo(Usuario::class);
     }

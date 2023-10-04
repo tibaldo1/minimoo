@@ -15,6 +15,9 @@ class CreateAuxiliarsTable extends Migration
     {
         Schema::create('auxiliars', function (Blueprint $table) {
             $table->id();
+            $table->string('id_usuarios');
+            $table->foreign('id_usuarios')->references('cpf')->on('usuarios');
+            $table->foreignId('id_vaquinha')->constrained();
             $table->timestamps();
         });
     }

@@ -12,6 +12,6 @@ class Vaquinha extends Model
 
     public function auxiliar()
     {
-        return $this->hasMany(Auxiliar::class);
+        return $this->hasMany(Auxiliar::class, "id_vaquinha");
     }
 }
