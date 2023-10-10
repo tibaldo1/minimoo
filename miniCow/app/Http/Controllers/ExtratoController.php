@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Extrato;
 use Illuminate\Http\Request;
 
 class ExtratoController extends Controller
@@ -13,7 +14,8 @@ class ExtratoController extends Controller
      */
     public function index()
     {
-        //
+        echo csrf_token();
+        return Extrato::all();
     }
 
     /**
@@ -34,7 +36,8 @@ class ExtratoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Extrato::create($request->all());
+        return "extrato criado com sucesso";
     }
 
     /**
@@ -66,9 +69,11 @@ class ExtratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Extrato $extrato)
     {
-        //
+        $extrato->fill($request->all());
+        $extrato->save();
+        return "extrato atualizado com sucesso";
     }
 
     /**
@@ -77,8 +82,9 @@ class ExtratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Extrato $extrato)
     {
-        //
+        Extrato::destroy($extrato->id);
+        return "extrato deleted";
     }
 }

@@ -87,4 +87,23 @@ class UsuariosController extends Controller
         Usuario::destroy($usuario->cpf);
         return "user deleted";
     }
+
+    public function exibe_user_vaquinha(Usuario $usuario){
+        return $usuario->auxiliar;
+    }
+    public function cria_user_vaquinha(Usuario $usuario, Request $request){
+        $cpf=$request->input('cpf');
+        $id_vaquinha=$request->input('id_vaquinha');
+        $usuario->auxiliar->create([$cpf,$id_vaquinha]);
+        return "vaquinha user criada com sucesso";
+    }
+    public function atualiza_user_vaquinha(Usuario $usuario, Request $request){
+        $usuario->auxiliar()->fill($request->all());
+        $usuario->save();
+        return "vaquinha user atualizada com sucesso";
+   }
+   public function destroy_user_vaquinha(Usuario $usuario){
+    $usuario->auxiliar()->destroy($usuario->id);
+    return "vaquinha user removida com sucesso";
+}
 }

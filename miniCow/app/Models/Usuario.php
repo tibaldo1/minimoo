@@ -13,7 +13,7 @@ class Usuario extends Model
 
     public function auxiliar()
     {
-        return $this->hasMany(Auxiliar::class);
+        return $this->hasMany(Auxiliar::class, "cpf");
     }
     public function extratos(){
         return $this->hasMany(Extrato::class, "cpf");

@@ -9,12 +9,12 @@ class Auxiliar extends Model
 {
     use HasFactory;
 
-    protected $fillable=["cpf", "id"];
+    protected $fillable=["cpf", "id_vaquinha" ];
 
     public function usuarios(){
-        $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class, "cpf");
     }
     public function vaquinhas(){
-        $this->belongsTo(Vaquinha::class);
+        return $this->belongsTo(Vaquinha::class, "id_vaquinha");
     }
 }

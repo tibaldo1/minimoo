@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,7 @@ class CreateExtratosTable extends Migration
     {
         Schema::create('extratos', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Usuario::class, 'cpf');
             $table->float('valor', 11, 2);
             $table->timestamps();
         });

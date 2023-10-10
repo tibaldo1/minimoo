@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Extrato extends Model
 {
     use HasFactory;
-    protected $fillable=["valor"];
+    protected $fillable=["valor", "cpf"];
     public function usuarios(){
         $this->belongsTo(Usuarios::class);
     }

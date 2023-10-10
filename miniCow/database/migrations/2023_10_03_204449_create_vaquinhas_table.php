@@ -14,7 +14,7 @@ class CreateVaquinhasTable extends Migration
     public function up()
     {
         Schema::create('vaquinhas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_vaquinha');
             $table->string('nome');
             $table->string('descricao');
             $table->float('valor', 11, 2);
