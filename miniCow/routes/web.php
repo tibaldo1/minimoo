@@ -11,14 +11,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('/vaquinha', VaquinhaController::class);
-Route::resource('/usuarios', UsuariosController::class);
-Route::resource('/extrato', ExtratoController::class);
 
 //
-
+Route::resource('/extrato', ExtratoController::class);
 Route::get('/usercow', [UsuariosController::class, 'exibe_user_vaquinha']);
 Route::post('/usercow', [UsuariosController::class, 'cria_user_vaquinha']);
 Route::put('/usercow/{id}', [UsuariosController::class, 'atualiza_user_vaquinha']);
 Route::delete('/usercow/{id}', [UsuariosController::class, 'destroy_user_vaquinha']);
 
-
+Route::middleware(['Cors'])->group(function () {
+    Route::resource('/usuarios', UsuariosController::class);
+});

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auxiliar;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,6 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        echo csrf_token();
         return Usuario::all();
         }
 
@@ -88,22 +88,20 @@ class UsuariosController extends Controller
         return "user deleted";
     }
 
-    public function exibe_user_vaquinha(Usuario $usuario){
-        return $usuario->auxiliar;
+    public function exibe_user_vaquinha(Auxiliar $auxiliar){
+        return Auxiliar::all();
     }
-    public function cria_user_vaquinha(Usuario $usuario, Request $request){
-        $cpf=$request->input('cpf');
-        $id_vaquinha=$request->input('id_vaquinha');
-        $usuario->auxiliar->create([$cpf,$id_vaquinha]);
+    public function cria_user_vaquinha(Auxiliar $auxiliar, Request $request){
+        Auxiliar::create($request->all());
         return "vaquinha user criada com sucesso";
     }
-    public function atualiza_user_vaquinha(Usuario $usuario, Request $request){
-        $usuario->auxiliar()->fill($request->all());
-        $usuario->save();
+    public function atualiza_user_vaquinha(Auxiliar $auxiliar, Request $request){
+        $auxiliar->fill($request->all());
+        $auxiliar->save();
         return "vaquinha user atualizada com sucesso";
    }
-   public function destroy_user_vaquinha(Usuario $usuario){
-    $usuario->auxiliar()->destroy($usuario->id);
+   public function destroy_user_vaquinha(Auxiliar $auxiliar){
+    Auxiliar::destroy($auxiliar->id);
     return "vaquinha user removida com sucesso";
 }
 }

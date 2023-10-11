@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vaquinha extends Model
 {
     use HasFactory;
+    protected $primaryKey="id_vaquinha";
     protected $fillable = [ "nome", "valor", "objetivo", "descricao", "data_fim"];
 
     public function auxiliar()
